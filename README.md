@@ -45,6 +45,10 @@ data/ (yellow + green taxi CSV)
 Each step is an independent, reusable **Azure ML Component** (`components/<step>/`),
 wired together in [pipeline.yml](pipeline.yml).
 
+![Completed pipeline run in Azure ML Studio Designer](images/workflow.png)
+*The pipeline above, as built and run in Azure ML Studio's Designer (Track A) — all 4
+steps (`prep-data` → `train-model` → `evaluate-model` → `register-model`) completed.*
+
 ## 2. Repository structure
 
 ```
