@@ -1,0 +1,10 @@
+# <environment>
+# Môi trường dùng chung cho tất cả các component của pipeline (prep/train/evaluate/register).
+# Đăng ký 1 lần với: az ml environment create --file environment/train-env.yml
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+name: taxi-fare-train-env
+version: 1
+description: Python 3.10 + pandas/sklearn/mlflow/azureml-core cho pipeline dự đoán giá cước taxi NYC
+image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
+conda_file: ./conda.yaml
+# </environment>

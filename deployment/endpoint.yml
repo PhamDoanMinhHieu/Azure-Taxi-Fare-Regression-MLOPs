@@ -1,0 +1,6 @@
+# <endpoint>
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: taxi-fare-endpoint
+auth_mode: key
+description: Managed online endpoint serving the taxi-model regression model.
+# </endpoint>

@@ -1,0 +1,16 @@
+name: taxi-fare-train-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - setuptools<81
+      - pandas==2.2.2
+      - numpy==1.26.4
+      - scikit-learn==1.4.2
+      - matplotlib==3.8.4
+      - mlflow==2.13.0
+      - azureml-mlflow==1.57.0
+      - azureml-core==1.57.0
+      - azureml-inference-server-http

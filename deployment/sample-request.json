@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "distance": 2.5,
+      "dropoff_latitude": 40.75,
+      "dropoff_longitude": -73.98,
+      "passengers": 1,
+      "pickup_latitude": 40.74,
+      "pickup_longitude": -73.99,
+      "store_forward": 0,
+      "vendor": 1,
+      "pickup_weekday": 2,
+      "pickup_month": 6,
+      "pickup_monthday": 15,
+      "pickup_hour": 14,
+      "pickup_minute": 30,
+      "pickup_second": 0,
+      "dropoff_weekday": 2,
+      "dropoff_month": 6,
+      "dropoff_monthday": 15,
+      "dropoff_hour": 14,
+      "dropoff_minute": 45,
+      "dropoff_second": 0
+    }
+  ]
+}
