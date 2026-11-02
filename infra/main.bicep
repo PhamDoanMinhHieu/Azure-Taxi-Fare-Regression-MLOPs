@@ -1,19 +1,19 @@
-// Entry point IaC: tạo Resource Group rồi deploy toàn bộ tài nguyên Azure ML vào trong đó.
+// IaC entry point: creates the Resource Group, then deploys all Azure ML resources into it.
 targetScope = 'subscription'
 
-@description('Tên Resource Group sẽ được tạo')
+@description('Name of the Resource Group to create')
 param resourceGroupName string = 'rg-taxi-mlops'
 
-@description('Vùng Azure để triển khai tài nguyên')
+@description('Azure region to deploy resources into')
 param location string = 'southeastasia'
 
-@description('Tiền tố đặt tên cho các tài nguyên (chỉ chữ thường + số, <= 8 ký tự)')
+@description('Naming prefix for resources (lowercase letters + digits only, <= 8 chars)')
 param namePrefix string = 'taximlops'
 
-@description('VM size cho Azure ML compute cluster')
+@description('VM size for the Azure ML compute cluster')
 param computeVmSize string = 'Standard_DS3_v2'
 
-@description('Số node tối đa của compute cluster')
+@description('Maximum node count of the compute cluster')
 param computeMaxNodes int = 2
 
 resource rg 'Microsoft.Resources/resourceGroups@2024-03-01' = {

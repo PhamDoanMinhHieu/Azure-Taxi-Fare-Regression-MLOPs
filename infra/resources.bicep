@@ -1,14 +1,14 @@
-// Tài nguyên trong Resource Group: Storage, Key Vault, App Insights, Azure ML Workspace, Compute Cluster
-@description('Vùng Azure để triển khai tài nguyên')
+// Resources inside the Resource Group: Storage, Key Vault, App Insights, Azure ML Workspace, Compute Cluster
+@description('Azure region to deploy resources into')
 param location string
 
-@description('Tiền tố đặt tên cho các tài nguyên')
+@description('Naming prefix for resources')
 param namePrefix string
 
-@description('VM size cho Azure ML compute cluster')
+@description('VM size for the Azure ML compute cluster')
 param computeVmSize string
 
-@description('Số node tối đa của compute cluster')
+@description('Maximum node count of the compute cluster')
 param computeMaxNodes int
 
 var uniqueSuffix = uniqueString(resourceGroup().id)

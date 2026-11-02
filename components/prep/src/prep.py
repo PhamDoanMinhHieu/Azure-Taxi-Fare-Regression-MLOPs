@@ -84,7 +84,7 @@ def cleanse_data(data, columns, keep_columns):
 green_data_clean = cleanse_data(green_data, green_columns, useful_columns)
 yellow_data_clean = cleanse_data(yellow_data, yellow_columns, useful_columns)
 
-# Gộp dữ liệu yellow + green taxi
+# Merge yellow + green taxi data
 combined_df = pd.concat([green_data_clean, yellow_data_clean], ignore_index=True)
 
 green_data_clean.to_csv(Path(args.transformed_data) / "green_prep_data.csv", index=False)
@@ -94,7 +94,7 @@ combined_df.to_csv(Path(args.transformed_data) / "merged_data.csv", index=False)
 # ------------ Filter Data ------------ #
 # ------------------------------------- #
 
-# Loại bỏ toạ độ nằm ngoài ranh giới thành phố New York.
+# Drop coordinates that fall outside New York City's bounds.
 combined_df = combined_df.astype(
     {
         "pickup_longitude": "float64",
@@ -126,7 +126,7 @@ replaced_distance_vals_df = replaced_stfor_vals_df.replace(
 
 normalized_df = replaced_distance_vals_df.astype({"distance": "float64"})
 
-# Tách pickup/dropoff datetime thành các đặc trưng thời gian (weekday, month, hour, ...)
+# Split pickup/dropoff datetime into time-based features (weekday, month, hour, ...)
 temp = pd.DatetimeIndex(normalized_df["pickup_datetime"], dtype="datetime64[ns]")
 normalized_df["pickup_weekday"] = temp.dayofweek
 normalized_df["pickup_month"] = temp.month
@@ -147,16 +147,16 @@ del normalized_df["pickup_datetime"]
 del normalized_df["dropoff_datetime"]
 normalized_df.reset_index(inplace=True, drop=True)
 
-# store_forward -> nhị phân
+# store_forward -> binary
 normalized_df["store_forward"] = np.where(normalized_df.store_forward == "N", 0, 1)
 
-# Loại các dòng dữ liệu bất thường: cost/distance phải dương
+# Drop abnormal rows: cost/distance must be positive
 final_df = normalized_df[(normalized_df.distance > 0) & (normalized_df.cost > 0)]
 final_df.reset_index(inplace=True, drop=True)
 
 final_df.to_csv(Path(args.transformed_data) / "transformed_data.csv", index=False)
 
-# Chia tập train / validation / test
+# Split into train / validation / test sets
 random_data = np.random.rand(len(final_df))
 msk_train = random_data < 0.7
 msk_val = (random_data >= 0.7) & (random_data < 0.85)

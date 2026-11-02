@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Submit pipeline job (prep -> train -> evaluate -> register) lên Azure ML.
+# Submit the pipeline job (prep -> train -> evaluate -> register) to Azure ML.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."

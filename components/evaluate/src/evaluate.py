@@ -74,7 +74,7 @@ run.log("r2", r2)
 run.parent.log("mse", mse)
 run.parent.log("r2", r2)
 
-# -------------------- So sánh với model đang được đăng ký (nếu có) -------------------- #
+# -------------------- Compare against the currently registered model (if any) -------------------- #
 test_scores = {}
 current_score = r2
 
@@ -82,7 +82,7 @@ for model_run in Model.list(ws, name=args.model_name):
     model_dir = Model.download(model_run, exist_ok=True)
     model_file = Path(model_dir) / "model.sav"
     if not model_file.exists():
-        # phòng trường hợp model được đăng ký trực tiếp từ file .sav thay vì folder
+        # in case the model was registered directly from a .sav file instead of a folder
         candidates = list(Path(model_dir).rglob("*.sav"))
         if not candidates:
             continue
